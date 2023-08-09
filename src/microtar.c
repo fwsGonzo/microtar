@@ -75,7 +75,7 @@ static int twrite(mtar_t *tar, const void *data, unsigned size) {
 
 
 static int write_null_bytes(mtar_t *tar, int n) {
-  int i, err;
+  int err;
   char nul[MTAR_NULL_BLOCKSIZE];
   memset(nul, 0, sizeof(nul));
   while (n > 0) {
@@ -229,8 +229,6 @@ int mtar_init_mem_stream(mtar_mem_stream_t *mem, void *buff, size_t size)
 
 
 int mtar_open_mem(mtar_t *tar, mtar_mem_stream_t *mem) {
-  int err;
-  mtar_header_t h;
 
   if ( !mem || !mem->data || !mem->size ) {
     return MTAR_EOPENFAIL;
